@@ -1,0 +1,41 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="gb2312">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>程序标题在html的title标签里设置</title>
+ 
+	
+	
+    <script type="text/javascript">
+	/*应用程序全局对象*/
+	var theApp;
+
+	/*消息循环*/
+	function OnAppMessage(command, arg) {
+		var msg = "\r\ncommand: " + command + "\r\narg: " + arg;
+		alert("this message received is from C++ " + msg);
+	}
+	
+	
+	
+    </script>
+
+</head>
+
+	<body>
+		<p>这个页面来自应用程序资源中的html，你可以编辑这个页面来呈现不同的展示内容，网页界面逻通过js实现，真正的功能通过c++完成！</p>
+		<p>
+		js中通过theApp全局对象发送命令消息给c++后台，通过OnAppMessage(command, arg)函数来获取c++反馈回来的消息。例如：<br/>
+			<p style="color:#0000ff">&lt;button onclick= "theApp.SendMessage('button_click', 'arg');" &gt;SendMessage&lt;/button&gt;</p>
+		</p>
+		
+		<p>c++中通过重载父类的OnMessage(MSG msg)函数并拦截WM_SCRIPT消息来处理js的消息。通过SendMessage(WM_SCRIPT, WPARAM, LPARAM)给js发消息。</p>
+		
+		<button onclick= "theApp.SendMessage('button_click', 'arg');" >SendMessage</button>
+		
+		
+		
+	</body>
+</html>
+
